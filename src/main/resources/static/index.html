@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>电子黑板</title>
+    <link rel="stylesheet" href="./style.css" />
+  </head>
+  <body>
+    <main class="board-app">
+      <div class="bg-decor" aria-hidden="true"></div>
+      <header class="toolbar" aria-label="绘图工具栏">
+        <div class="tool-group">
+          <label for="colorPicker">颜色</label>
+          <input id="colorPicker" type="color" value="#ffffff" />
+        </div>
+
+        <div class="tool-group">
+          <label for="lineWidth">粗细</label>
+          <input id="lineWidth" type="range" min="1" max="40" value="4" />
+          <span id="lineWidthValue">4px</span>
+        </div>
+
+        <button id="penBtn" class="active" type="button">画笔</button>
+        <button id="eraserBtn" type="button">橡皮擦</button>
+        <button id="clearBtn" type="button">清空</button>
+        <button id="exportBtn" type="button">导出 PNG</button>
+        <button id="saveBtn" type="button">保存</button>
+        <button id="historyBtn" type="button">历史画册</button>
+      </header>
+
+      <section class="canvas-wrap">
+        <canvas id="boardCanvas" aria-label="电子黑板画布"></canvas>
+      </section>
+
+      <aside id="historyPanel" class="history-panel" aria-label="历史画册" aria-hidden="true">
+        <div class="history-head">
+          <h2>历史画册</h2>
+          <button id="closeHistoryBtn" type="button">关闭</button>
+        </div>
+        <ul id="historyList" class="history-list"></ul>
+      </aside>
+
+      <div id="saveModal" class="modal" aria-hidden="true">
+        <div class="modal-card" role="dialog" aria-modal="true" aria-labelledby="saveModalTitle">
+          <h3 id="saveModalTitle">给作品取个名字吧</h3>
+          <p class="modal-tip">小画家，今天的作品也很可爱哦。</p>
+          <input
+            id="artNameInput"
+            class="modal-input"
+            type="text"
+            maxlength="60"
+            placeholder="例如：彩虹小城堡"
+          />
+          <p id="modalError" class="modal-error"></p>
+          <div class="modal-actions">
+            <button id="cancelSaveBtn" type="button">取消</button>
+            <button id="confirmSaveBtn" type="button">保存作品</button>
+          </div>
+        </div>
+      </div>
+
+      <div id="toast" class="toast" aria-live="polite"></div>
+    </main>
+
+    <script src="./script.js"></script>
+  </body>
+</html>
